@@ -1,0 +1,1 @@
+sudo yum --enablerepo=PowerTools install -y chrpath cpp diffstat gcc make patch gcc-c++ rpcgen perl-Data-Dumper perl-Thread-Queue

@@ -1,0 +1,29 @@
+MACHINE ?= "raspberrypi3-64"
+
+DISTRO ?= "poky"
+
+PACKAGE_CLASSES ?= "package_rpm"
+
+EXTRA_IMAGE_FEATURES ?= ""
+
+USER_CLASSES ?= "image-mklibs image-prelink"
+
+PATCHRESOLVE = "noop"
+
+BB_DISKMON_DIRS ??= "\
+    STOPTASKS,${TMPDIR},1G,100K \
+    STOPTASKS,${DL_DIR},1G,100K \
+    STOPTASKS,${SSTATE_DIR},1G,100K \
+    STOPTASKS,/tmp,100M,100K \
+    ABORT,${TMPDIR},100M,1K \
+    ABORT,${DL_DIR},100M,1K \
+    ABORT,${SSTATE_DIR},100M,1K \
+    ABORT,/tmp,10M,1K"
+
+PACKAGECONFIG_append_pn-qemu-system-native = " sdl"
+
+CONF_VERSION = "1"
+
+BB_NUMBER_THREADS = "9"
+PARALLEL_MAKE = "-j 9"
+GPU_MEM = "16"
